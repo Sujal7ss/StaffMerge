@@ -56,7 +56,7 @@ export default function LandingPage() {
             Work
           </span>
         </div>
-        <LoginButton style={"flex justify-evenly flex-row  items-center absolute left-10 top-56 md:left-52 mt-10 md:top-96 md:flex-row"} />
+        <LoginButton style={"flex justify-evenly flex-row  items-center absolute ml-10 left-10 top-56 md:left-52 mt-10 md:top-96 md:flex-row"} />
       </div>
     </>
   );
