@@ -7,27 +7,27 @@ import classNames from 'classnames';
 function Candidate({ candidate, job }) {
   const [resumeUrl, setResumeUrl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/resume/${candidate._id}`,
-          { responseType: "blob" }
-        );
-        if (response.status === 200) {
-          const url = URL.createObjectURL(response.data);
-          setResumeUrl(url);
-        } else {
-          toast.error("No resume found");
-        }
-      } catch (err) {
-        console.log("err");
-      }
-    };
-    if (candidate) {
-      fetchData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/resume/${candidate._id}`,
+  //         { responseType: "blob" }
+  //       );
+  //       if (response.status === 200) {
+  //         const url = URL.createObjectURL(response.data);
+  //         setResumeUrl(url);
+  //       } else {
+  //         toast.error("No resume found");
+  //       }
+  //     } catch (err) {
+  //       console.log("err");
+  //     }
+  //   };
+  //   if (candidate) {
+  //     fetchData();
+  //   }
+  // }, []);
   const popupModal = () => {
     setIsOpen((e) => !e);
   };
