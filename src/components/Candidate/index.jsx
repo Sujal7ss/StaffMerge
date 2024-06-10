@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import classNames from 'classnames';
 
 function Candidate({ candidate, job }) {
-  const [resumeUrl, setResumeUrl] = useState("");
+  const [resumeUrl, setResumeUrl] = useState("null");
   const [isOpen, setIsOpen] = useState(false);
   // useEffect(() => {
   //   const fetchData = async () => {
