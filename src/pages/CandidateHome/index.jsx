@@ -8,11 +8,11 @@ export default function CandidateHome({user}) {
 
   useEffect(() => {
     const getList = async () => {
-      
+
       try {
-        // console.log(process.env.REACT_APP_BACKENDURI)
+        // console.log(process.env.https://sujal7ss-staff-merge-backend.vercel.app)
         const { data } = await axios.get(
-          `${process.env.REACT_APP_BACKENDURI}/api/candidate/joblist`
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/joblist`
         );
 
         if (data.success) {

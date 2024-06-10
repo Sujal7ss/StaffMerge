@@ -59,7 +59,7 @@ function JobDetailForm() {
     try {
       const email = getCookie("username");
       const { data } = await axios.post(
-        `${REACT_APP_BACKENDURI}/api/employer/jobDetails?email=${email}`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/jobDetails?email=${email}`,
         {
           title: title,
           jobType: jobType,

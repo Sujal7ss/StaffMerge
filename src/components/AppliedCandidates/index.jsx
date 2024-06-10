@@ -9,7 +9,7 @@ function AppliedCandidates({ candidates, job }) {
     const fetchData = async () => {
       try {
         const { data } = await axios.post(
-          `${REACT_APP_BACKENDURI}/api/candidate/appliedCandidates`,
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/appliedCandidates`,
           { emails: candidates }
         );
 

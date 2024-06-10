@@ -33,7 +33,7 @@ function CandidateSignup() {
 
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKENDURI}/api/candidate/signup`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/signup`,
         {
           name: name,
           email: email,

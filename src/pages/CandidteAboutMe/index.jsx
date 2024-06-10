@@ -22,7 +22,7 @@ function CandidateAboutMe() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `${REACT_APP_BACKENDURI}/api/candidate/aboutme`,
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/aboutme`,
           {
             headers: {
               "content-type": "application/json",
@@ -93,7 +93,7 @@ function CandidateAboutMe() {
     setEdit((e) => !e);
     if (edit) {
       const response = await axios.post(
-        `${REACT_APP_BACKENDURI}/api/candidate/update`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/update`,
         {
           name: name,
           role: role,

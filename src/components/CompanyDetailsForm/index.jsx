@@ -43,7 +43,7 @@ function CompanyDetailsForm() {
     try {
       const email = getCookie("username");
       const { data } = await axios.post(
-        `${REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${email}`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/companyDetails?email=${email}`,
 
         {
           companyName: companyName,

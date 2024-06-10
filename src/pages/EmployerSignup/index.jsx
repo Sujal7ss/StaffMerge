@@ -26,7 +26,7 @@ function EmployerSignup() {
 
     try {
       const { data } = await axios.post(
-        `${REACT_APP_BACKENDURI}/api/employer/signup`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/signup`,
         {
           name: name,
           email: email,

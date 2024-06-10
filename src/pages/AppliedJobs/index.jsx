@@ -12,7 +12,7 @@ export default function AppliedJobs({ user = "candidate" }) {
       try {
         console.log("Fetch applied jobs");
         const { data } = await axios.get(
-          `${REACT_APP_BACKENDURI}/api/candidate/appliedJobs`,
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/appliedJobs`,
           {
             headers: {
               "content-type": "application/json",

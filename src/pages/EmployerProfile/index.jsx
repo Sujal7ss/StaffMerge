@@ -15,7 +15,7 @@ export default function EmployerProfile() {
     console.log(user)
     try {
       const { data } = await axios.get(
-        `${REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${user}`
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/companyDetails?email=${user}`
       );
 
       if (data.data) {
@@ -37,7 +37,7 @@ export default function EmployerProfile() {
     if (edit) {
       try {
         const { data } = await axios.post(
-          `${REACT_APP_BACKENDURI}/api/employer/companyDetails`
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/companyDetails`
         );
       } catch (err) {}
     }

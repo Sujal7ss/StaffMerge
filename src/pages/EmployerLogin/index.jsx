@@ -25,7 +25,7 @@ export default function EmployerLogin() {
 
     try {
       const { data } = await axios.post(
-        `${REACT_APP_BACKENDURI}/api/employer/login`,
+        `https://sujal7ss-staff-merge-backend.vercel.app/api/employer/login`,
         {
           email: email,
           password: password,

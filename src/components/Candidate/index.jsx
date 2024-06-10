@@ -11,7 +11,7 @@ function Candidate({ candidate, job }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${REACT_APP_BACKENDURI}/api/candidate/resume/${candidate._id}`,
+          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/resume/${candidate._id}`,
           { responseType: "blob" }
         );
         if (response.status === 200) {
@@ -34,7 +34,7 @@ function Candidate({ candidate, job }) {
 
   const handleYes = async() => {
     try{
-      const {data} = await axios.get(`${REACT_APP_BACKENDURI}/api/employer/selectCandidate`,
+      const {data} = await axios.get(`https://sujal7ss-staff-merge-backend.vercel.app/api/employer/selectCandidate`,
         {
           params: {
             job: job,
