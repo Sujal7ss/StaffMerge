@@ -34,7 +34,7 @@ function CandidateAboutMe() {
         if (!data.success) {
           toast.error("Login first");
           setTimeout(() => {
-            
+            window.location.href = "/candidateLogin";
           }, 2000);
           return
         }
