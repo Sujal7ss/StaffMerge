@@ -8,8 +8,9 @@ export default function CandidateHome({user}) {
 
   useEffect(() => {
     const getList = async () => {
+      
       try {
-        console.log(process.env.REACT_APP_BACKENDURI)
+        // console.log(process.env.REACT_APP_BACKENDURI)
         const { data } = await axios.get(
           `${process.env.REACT_APP_BACKENDURI}/api/candidate/joblist`
         );

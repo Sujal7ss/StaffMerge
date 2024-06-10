@@ -18,6 +18,7 @@ import EmployerLayout from "./components/EmployerLayout";
 
 function App() {
   console.log("HII");
+  // console.log(process.env.REACT_APP_BACKENDURI)
   return (
     <BrowserRouter>
       <Routes>
