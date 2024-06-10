@@ -101,17 +101,19 @@ export default function JobDetails() {
       return toast.error("Please provide resume");
     }
     try {
-      const formData = new FormData();
+      // const formData = new FormData();
       
-      formData.append("resume", resume);
-      formData.append("jobId", id);
+      // formData.append("resume", resume);
+      // formData.append("jobId", id);
 
-      const { data } = await axios.post(
+     const { data } = await axios.post(
         `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/apply`,
-        formData,
+        {
+            jobId : id
+        },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "content-type": "application/json",
           },
           withCredentials: true,
         }
