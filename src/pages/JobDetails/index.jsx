@@ -38,7 +38,7 @@ export default function JobDetails() {
     const getData = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/candidate/jobDetails/${id}`
+          `${REACT_APP_BACKENDURI}/api/candidate/jobDetails/${id}`
         );
         const job = data.job;
         setJob(job)
@@ -69,7 +69,7 @@ export default function JobDetails() {
     if (edit) {
       try {
         const { data } = await axios.post(
-          `http://localhost:8000/api/employer/editJob/${id}`,
+          `${REACT_APP_BACKENDURI}/api/employer/editJob/${id}`,
           {
             companyName: companyName,
             title: role,
@@ -107,7 +107,7 @@ export default function JobDetails() {
       formData.append("jobId", id);
 
       const { data } = await axios.post(
-        "http://localhost:8000/api/candidate/apply",
+        `${REACT_APP_BACKENDURI}/api/candidate/apply`,
         formData,
         {
           headers: {

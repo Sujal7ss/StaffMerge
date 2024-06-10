@@ -25,7 +25,7 @@ export default function EmployerLogin() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/api/employer/login",
+        `${REACT_APP_BACKENDURI}/api/employer/login`,
         {
           email: email,
           password: password,

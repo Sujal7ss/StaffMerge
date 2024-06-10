@@ -26,7 +26,7 @@ export default function CandidateLogin() {
 
     try {
       const {data} = await axios.post(
-        "http://localhost:8000/api/candidate/login",
+        `${process.env.REACT_APP_BACKENDURI}/api/candidate/login`,
         {
           email: email,
           password: password,

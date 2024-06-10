@@ -12,7 +12,7 @@ export default function AppliedJobs({ user = "candidate" }) {
       try {
         console.log("Fetch applied jobs");
         const { data } = await axios.get(
-          `http://localhost:8000/api/candidate/appliedJobs`,
+          `${REACT_APP_BACKENDURI}/api/candidate/appliedJobs`,
           {
             headers: {
               "content-type": "application/json",

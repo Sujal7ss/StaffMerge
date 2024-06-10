@@ -43,7 +43,7 @@ function CompanyDetailsForm() {
     try {
       const email = getCookie("username");
       const { data } = await axios.post(
-        `http://localhost:8000/api/employer/companyDetails?email=${email}`,
+        `${REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${email}`,
 
         {
           companyName: companyName,

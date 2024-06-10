@@ -9,7 +9,7 @@ function AppliedCandidates({ candidates, job }) {
     const fetchData = async () => {
       try {
         const { data } = await axios.post(
-          `http://localhost:8000/api/candidate/appliedCandidates`,
+          `${REACT_APP_BACKENDURI}/api/candidate/appliedCandidates`,
           { emails: candidates }
         );
 

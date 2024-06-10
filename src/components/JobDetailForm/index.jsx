@@ -59,7 +59,7 @@ function JobDetailForm() {
     try {
       const email = getCookie("username");
       const { data } = await axios.post(
-        `http://localhost:8000/api/employer/jobDetails?email=${email}`,
+        `${REACT_APP_BACKENDURI}/api/employer/jobDetails?email=${email}`,
         {
           title: title,
           jobType: jobType,

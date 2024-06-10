@@ -30,7 +30,7 @@ function PostedJobs({user}) {
         const getData = async() => {
             try{
 
-                const {data} = await axios.get(`http://localhost:8000/api/employer/postedJobs?email=${email}`,)
+                const {data} = await axios.get(`${REACT_APP_BACKENDURI}/api/employer/postedJobs?email=${email}`,)
                 // console.log(data)
                 if(data.success) {
                     setJobList(data.jobs)

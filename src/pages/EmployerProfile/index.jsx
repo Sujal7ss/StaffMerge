@@ -15,7 +15,7 @@ export default function EmployerProfile() {
     console.log(user)
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/api/employer/companyDetails?email=${user}`
+        `${REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${user}`
       );
 
       if (data.data) {
@@ -37,7 +37,7 @@ export default function EmployerProfile() {
     if (edit) {
       try {
         const { data } = await axios.post(
-          `http://localhost:8000/api/employer/companyDetails`
+          `${REACT_APP_BACKENDURI}/api/employer/companyDetails`
         );
       } catch (err) {}
     }

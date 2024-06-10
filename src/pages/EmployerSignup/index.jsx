@@ -26,7 +26,7 @@ function EmployerSignup() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/api/employer/signup",
+        `${REACT_APP_BACKENDURI}/api/employer/signup`,
         {
           name: name,
           email: email,
