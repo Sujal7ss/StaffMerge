@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import getCookie from "../../components/cookie";
+import Avatar, { genConfig } from "react-nice-avatar";
 
 function CandidateAboutMe() {
   const navigator = useNavigate();
@@ -18,6 +18,7 @@ function CandidateAboutMe() {
   const [phone, setPhone] = useState("1234567890");
   const [skills, setSkills] = useState(["java", "React", "Node"]);
   const [edit, setEdit] = useState(false);
+  const [config, setConfig] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,13 +31,13 @@ function CandidateAboutMe() {
             withCredentials: true,
           }
         );
-        console.log(data)
+        
         if (!data.success) {
           toast.error("Login first");
           setTimeout(() => {
             window.location.href = "/candidateLogin";
           }, 2000);
-          return
+          return;
         }
         const candidate = data.candidate;
 
@@ -68,7 +69,9 @@ function CandidateAboutMe() {
           if (candidate.skills) {
             setSkills(candidate.skills);
           }
-          
+          setConfig(() => {
+            genConfig(candidate.name);
+          });
 
           // setToken(response.data.token); // Assuming the response contains a token field
         } else {
@@ -114,13 +117,9 @@ function CandidateAboutMe() {
     <>
       <section className=" py-12 flex items-center">
         <div className="max-w-full mx-auto px-4 flex sm:px-6 lg:px-8">
-        <div className="card w-72 shadow-lg relative flex flex-col border top-2 hover:top-0 hover:cursor-pointer  border-zinc-300 border-r-4 border-b-4 md:w-full md:h-full p-3 rounded-lg  mb-5">
+          <div className="card w-72 shadow-lg relative flex flex-col border top-2 hover:top-0 hover:cursor-pointer  border-zinc-300 border-r-4 border-b-4 md:w-full md:h-full p-3 rounded-lg  mb-5">
             <div className="flex flex-col md:flex-row items-center p-6 gap-10">
-              <img
-                className="h-24 w-24 rounded-full object-cover border-2 border-gray-300"
-                src="https://via.placeholder.com/150"
-                alt="Profile"
-              />
+              <Avatar className="w-32 h-32" {...config} />
               <div className="ml-6">
                 {edit && (
                   <>
@@ -254,7 +253,6 @@ function CandidateAboutMe() {
                 </p>
               )}
             </div>
-            
           </div>
         </div>
       </section>
