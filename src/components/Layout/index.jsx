@@ -6,9 +6,11 @@ import Navbar from "../Navbar";
 const Layout = () => {
   return (
     <>
-      <Navbar pages="Homepage" />
-      <div className="min-h-[100vh]">
-        <Outlet />
+      <div className="layout min-h-screen">
+        <Navbar pages="Homepage" />
+        <div className="">
+          <Outlet />
+        </div>
       </div>
     </>
   );

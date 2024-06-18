@@ -30,7 +30,7 @@ function PostedJobs({user}) {
         const getData = async() => {
             try{
 
-                const {data} = await axios.get(`https://sujal7ss-staff-merge-backend.vercel.app/api/employer/postedJobs?email=${email}`,)
+                const {data} = await axios.get(`${process.env.REACT_APP_BACKENDURI}/api/employer/postedJobs?email=${email}`,)
                 // console.log(data)
                 if(data.success) {
                     setJobList(data.jobs)

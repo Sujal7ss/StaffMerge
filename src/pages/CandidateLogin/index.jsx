@@ -26,7 +26,7 @@ export default function CandidateLogin() {
 
     try {
       const {data} = await axios.post(
-        `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/login`,
+        `${process.env.REACT_APP_BACKENDURI}/api/candidate/login`,
         {
           email: email,
           password: password,

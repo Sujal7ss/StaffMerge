@@ -3,8 +3,11 @@ import JobListing from "../JobListing";
 import toast from "react-hot-toast";
 import getCookie from "../../components/cookie";
 import axios from "axios";
+import Lottie from "lottie-react";
+import Loader from "../../assets/loader.json";
 
 export default function AppliedJobs({ user = "candidate" }) {
+  const [loading, setLoading] = useState(true);
   const [jobList, setJobList] = useState([]);
 
   useEffect(() => {
@@ -12,7 +15,7 @@ export default function AppliedJobs({ user = "candidate" }) {
       try {
         console.log("Fetch applied jobs");
         const { data } = await axios.get(
-          `https://sujal7ss-staff-merge-backend.vercel.app/api/candidate/appliedJobs`,
+          `${process.env.REACT_APP_BACKENDURI}/api/candidate/appliedJobs`,
           {
             headers: {
               "content-type": "application/json",
@@ -22,6 +25,7 @@ export default function AppliedJobs({ user = "candidate" }) {
         );
 
         if (data.success) {
+          setLoading(false)
           const list = data.jobs;
           list.reverse();
           return setJobList(list);
@@ -43,7 +47,17 @@ export default function AppliedJobs({ user = "candidate" }) {
   console.log(jobList);
   return (
     <>
-      {jobList.length > 0 && <JobListing JobList={jobList} applied={true} user={user} />}
+      {loading && (
+        <div className="flex flex-row w-full min-h-svh align-middle justify-center items-center">
+          <Lottie
+            animationData={Loader}
+            className="w-52 flex flex-row align-middle justify-center"
+          />
+        </div>
+      )}
+      {!loading && jobList.length > 0 && (
+        <JobListing JobList={jobList} applied={true} user={user} />
+      )}
     </>
   );
 }

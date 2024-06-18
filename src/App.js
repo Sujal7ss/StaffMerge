@@ -15,6 +15,7 @@ import PostJobs from "./pages/PostJobs/index.jsx";
 import PostedJobs from "./pages/PostedJobs/index.jsx";
 import Layout from "./components/Layout";
 import EmployerLayout from "./components/EmployerLayout";
+import NotFound from "./pages/404"
 
 function App() {
   console.log("HII");
@@ -43,6 +44,7 @@ function App() {
           <Route path="postedJobs" element={<PostedJobs user={"employer"} />} />
           <Route path="jobsDetails" element={<JobDetails user={"employer"}/>} />
         </Route>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </BrowserRouter>
   );

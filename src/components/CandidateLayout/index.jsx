@@ -7,9 +7,12 @@ import axios from "axios";
 const CandidateLayout = () => {
   return (
     <>
-      <Navbar pages="Candidate" />
-      <div className="min-h-[100vh]">
-        <Outlet />
+        {/* <div className="fixed h-20 z-40 bg-black  top-0" onMouseDown={}></div> */}
+      <div className="min-h-screen">
+        <Navbar pages="Candidate" />
+        <div className="">
+          <Outlet />
+        </div>
       </div>
     </>
   );
