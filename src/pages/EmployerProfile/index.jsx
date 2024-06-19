@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import img from "../../assets/intel.png";
 import getCookie from "../../components/cookie.js";
 
 export default function EmployerProfile() {
@@ -10,25 +9,31 @@ export default function EmployerProfile() {
   const [description, setDescription] = useState("Description");
 
   const [edit, setEdit] = useState(false);
-  const call = async () => {
-    let user = getCookie(document.cookie);
-    console.log(user)
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${user}`
-      );
 
-      if (data.data) {
-        console.log(data)
-        setCompanyName(data.data.companyName);
-        setCity(data.data.city);
-        setAbout(data.data.about);
-        setDescription(data.data.about);
+  useEffect(() => {
+    const fetch = async () => {
+      let user = getCookie(document.cookie);
+      console.log(user)
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKENDURI}/api/employer/companyDetails`
+        );
+  
+        if (data.data) {
+          console.log(data)
+          setCompanyName(data.data.companyName);
+          setCity(data.data.city);
+          setAbout(data.data.about);
+          setDescription(data.data.about);
+        }
+      } catch (err) {
+        console.log(err.message);
       }
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+    };
+    fetch()
+  }, [])
+  
+  
   const handleSave = async () => {
     console.log("Edit");
     setEdit((e) => !e);
@@ -45,7 +50,6 @@ export default function EmployerProfile() {
   return (
     <>
       <div
-        onLoad={call}
         className="company w-11/12 h-96 m-auto mb-10 flex-col items-center md:items-start md:flex-row flex gap-10 "
       >
         <div className="flex flex-col w-3/4 mt-4 items-center h-96 gap-10">
