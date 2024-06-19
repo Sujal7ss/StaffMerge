@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import animation1 from "../../assets/animation1.json";
-import animation2 from "../../assets/animation2.json";
-import Lottie from "lottie-react";
+import React, {useEffect} from "react";
+import ReactDOM from "react-dom/client";
+import Navbar from "../../components/Navbar";
 import LoginButton from "../../components/LoginButton";
 
 export default function LandingPage() {
@@ -43,7 +42,8 @@ export default function LandingPage() {
   // }, []);
   return (
     <>
-      <div className="h-svh bg-C0DFED flex flex-col md:flex-row">
+      
+      <div  className="h-svh bg-C0DFED flex flex-col md:flex-row">
         <div className="relative ml-10 md:left-36">
           <span className="text-3xl relative top-20 md:text-7xl  md:top-40 font-bold bg-013C5E">
             Connect.
@@ -56,16 +56,7 @@ export default function LandingPage() {
             Work
           </span>
         </div>
-
-        <LoginButton
-          style={
-            "flex justify-evenly flex-row  items-center absolute ml-10 left-10 top-56 md:left-52 mt-10 md:top-96 md:flex-row"
-          }
-        />
-        <Lottie
-          animationData={animation2}
-          className="w-60 md:w-90 md:ml-40 mt-36 m-auto"
-        />
+        <LoginButton style={"flex justify-evenly flex-row  items-center absolute ml-10 left-10 top-56 md:left-52 mt-10 md:top-96 md:flex-row"} />
       </div>
     </>
   );

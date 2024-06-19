@@ -29,12 +29,6 @@ export default function EmployerLogin() {
         {
           email: email,
           password: password,
-        },
-        {
-          headers: {
-            "content-type": "application/json",
-          },
-          withCredentials: true,
         }
       );
 
