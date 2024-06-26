@@ -16,6 +16,7 @@ import PostedJobs from "./pages/PostedJobs/index.jsx";
 import Layout from "./components/Layout";
 import EmployerLayout from "./components/EmployerLayout";
 import NotFound from "./pages/404"
+import Home from "./pages/Home"
 
 function App() {
   console.log("HII");
@@ -23,6 +24,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="home" element={<Home />} />
           <Route index element={<LandingPage />} />
           <Route path="candidateSignup" element={<CandidateSignup />} />
           <Route path="candidateLogin" element={<CandidateLogin />} />

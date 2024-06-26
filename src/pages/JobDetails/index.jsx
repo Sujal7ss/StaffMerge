@@ -101,10 +101,10 @@ export default function JobDetails() {
       return toast.error("Please provide resume");
     }
     try {
-      // const formData = new FormData();
+      const formData = new FormData();
 
-      // formData.append("resume", resume);
-      // formData.append("jobId", id);
+      formData.append("resume", resume);
+      formData.append("jobId", id);
 
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKENDURI}/api/candidate/apply`,
@@ -145,56 +145,58 @@ export default function JobDetails() {
         <button onClick={applyHandler}>Close</button>
         <div className="">
           <div className="mt-3 md:p-8 lg:w-1/2 mx-auto">
-            <div className="bg-gray-100 rounded-lg py-6 md:py-12 px-4 lg:px-24">
-              <p className="text-center text-xs md:text-lg text-gray-500 font-semibold">
-                APPLY TO THIS JOB?
-              </p>
+            <form  enctype="multipart/form-data">
+              <div className="bg-gray-100 rounded-lg py-6 md:py-12 px-4 lg:px-24">
+                <p className="text-center text-xs md:text-lg text-gray-500 font-semibold">
+                  APPLY TO THIS JOB?
+                </p>
 
-              <div className="mt-6">
-                <div class="relative z-0 w-full mb-5 group">
-                  <input
-                    type="text"
-                    name="floating_name"
-                    id="floating_name"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    // onChange={(e) => {
-                    //   setName(e.target.value);
-                    // }}
-                  />
-                  <label
-                    for="floating_name"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Name
-                  </label>
-                </div>
+                <div className="mt-6">
+                  <div class="relative z-0 w-full mb-5 group">
+                    <input
+                      type="text"
+                      name="floating_name"
+                      id="floating_name"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                      // onChange={(e) => {
+                      //   setName(e.target.value);
+                      // }}
+                    />
+                    <label
+                      for="floating_name"
+                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Name
+                    </label>
+                  </div>
 
-                <div className="relative mt-3">
-                  <p className="text-sm underline">Upload resume</p>
-                  <input
-                    className="text-sm w-32 appearance-none border md:pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md md:w-full md:py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                    id="username"
-                    type="file"
-                    name="resume"
-                    onChange={(e) => setResume(e.target.files[0])}
-                  />
-                </div>
+                  <div className="relative mt-3">
+                    <p className="text-sm underline">Upload resume</p>
+                    <input
+                      className="text-sm w-32 appearance-none border md:pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md md:w-full md:py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
+                      id="username"
+                      type="file"
+                      name="resume"
+                      onChange={(e) => setResume(e.target.files[0])}
+                    />
+                  </div>
 
-                <div className="flex items-center justify-center mt-8">
-                  <button
-                    className="text-white py-1 px-2 md:py-2 md:px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                    // type="submit"
-                    method="post"
-                    onClick={handleApply}
-                  >
-                    Submit
-                  </button>
+                  <div className="flex items-center justify-center mt-8">
+                    <button
+                      className="text-white py-1 px-2 md:py-2 md:px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                      // type="submit"
+                      method="post"
+                      onClick={handleApply}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  <hr className="m-4" />
                 </div>
-                <hr className="m-4" />
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </ReactModal>

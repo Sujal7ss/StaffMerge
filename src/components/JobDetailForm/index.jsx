@@ -8,6 +8,7 @@ import CurrencyInput from "react-currency-input-field";
 function JobDetailForm() {
   const navigate = useNavigate();
   const [details, setDetails] = useState(false);
+  const [posting, setPosting] = useState(false);
 
   const [title, setTitle] = useState("");
   const [jobType, setJobType] = useState("Part-Time");
@@ -56,6 +57,7 @@ function JobDetailForm() {
     if (experience < 0) {
       return toast.error("Experience Cant be negative");
     }
+    setPosting(true)
     try {
       const email = getCookie("username");
       const { data } = await axios.post(
@@ -85,7 +87,6 @@ function JobDetailForm() {
 
   return (
     <>
-      
       <form class="max-w-md mx-auto mt-6" method="post">
         <div class="relative z-0 w-full mb-5 group">
           <input
@@ -247,10 +248,10 @@ function JobDetailForm() {
             Country
           </label>
         </div>
-        
 
         <div className="flex items-center justify-center mt-8">
           <button
+            disabled={posting}
             className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
             type="submit"
             onClick={(e) => {
