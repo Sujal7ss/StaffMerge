@@ -35,19 +35,14 @@ function EmployerSignup() {
       );
 
       if (data.success) {
-        // setAuthenticated(true);
         toast.success(data.message);
         navigate("/employerLogin")
       }
-      //  return toast.error(data.message);
     } catch (err) {
       return toast.error(err.message);
     }
   };
 
-  // if (authenticated) {
-    
-  // }
 
   return (
     <>

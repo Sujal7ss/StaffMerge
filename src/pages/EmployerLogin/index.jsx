@@ -37,7 +37,7 @@ export default function EmployerLogin() {
         toast.success(data.message);
 
         setAuthenticated(true);
-        if (data.company.companyName !== undefined) {
+        if (data.company !== undefined) {
           setCompany(data.company);
         }
         

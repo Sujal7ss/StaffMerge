@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../Logo";
+import axios from "axios";
 import LoginButton from "../LoginButton";
 import NavbarDetails from "../../assets/NavbarDetails";
 import Button from "../../components/Button";
@@ -16,16 +17,47 @@ export default function Navbar({ pages }) {
 
   // console.log(navbar[0].path)
   function newJobHandler() {
-    if(visible)
-      {
-
-        setVisible(false)
-      }
+    if (visible) {
+      setVisible(false);
+    }
     return navigate("postJob");
   }
 
   const visibleHandler = () => {
     setVisible((e) => !e);
+  };
+  const handleLogout = async () => {
+    try {
+      if (pages == "Candidate") {
+        await axios.post(
+          `${process.env.REACT_APP_BACKENDURI}/api/candidate/logout`,
+          {},
+          {
+            withCredentials: true, // Include cookies in the request
+          }
+        );
+
+        // setTimeout(() => {
+        window.location.href = "/";
+        // }, 2000);
+      }
+      else
+      {
+        await axios.post(
+          `${process.env.REACT_APP_BACKENDURI}/api/employer/logout`,
+          {},
+          {
+            withCredentials: true, // Include cookies in the request
+          }
+        );
+  
+        // setTimeout(() => {
+          window.location.href = "/";
+        // }, 2000);
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
   return (
     <header className="navbar h-fit bg-C0DFED w-full  top-0 ">
@@ -49,6 +81,15 @@ export default function Navbar({ pages }) {
                 {item.name}
               </NavLink>
             ))}
+            {pages !== "Homepage" && (
+              <button
+                key={10}
+                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            )}
           </ul>
         </div>
         <button
@@ -110,7 +151,7 @@ export default function Navbar({ pages }) {
 
             {button.name === "Profile" && (
               <Button
-              style={"bg-sky-300 justify-center items-center md:flex w-28 "}
+                style={"bg-sky-300 justify-center items-center md:flex w-28 "}
                 onSelect={newJobHandler}
               >
                 Post a Job

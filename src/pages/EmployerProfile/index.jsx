@@ -15,7 +15,13 @@ export default function EmployerProfile() {
     console.log(user)
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURI}/api/employer/companyDetails?email=${user}`
+        `${process.env.REACT_APP_BACKENDURI}/api/employer/companyDetails`, 
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+          withCredentials: true,
+        }
       );
 
       if (data.data) {
