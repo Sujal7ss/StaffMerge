@@ -34,6 +34,10 @@ const Signup = () => {
     }
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!input.email || !input.file || !input.fullname || !input.password || !input.phoneNumber || !input.role){
+            toast.error("Something is missing");
+            return;
+        }
         const formData = new FormData();    //formdata object
         formData.append("fullname", input.fullname);
         formData.append("email", input.email);
