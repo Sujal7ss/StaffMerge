@@ -30,6 +30,10 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
+            if(!input.email || !input.password || !input.role){
+                toast.error("Something is missing");
+                return;
+            }
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
                 headers: {
                     "Content-Type": "application/json"
@@ -67,6 +71,7 @@ const Login = () => {
                             name="email"
                             onChange={changeEventHandler}
                             placeholder="patel@gmail.com"
+                            required
                         />
                     </div>
 
@@ -78,6 +83,7 @@ const Login = () => {
                             name="password"
                             onChange={changeEventHandler}
                             placeholder="patel@gmail.com"
+                            required
                         />
                     </div>
                     <div className='flex items-center justify-between'>
