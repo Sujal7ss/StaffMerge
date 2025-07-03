@@ -61,6 +61,7 @@ const JobDescription = () => {
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {
           withCredentials: true,
         });
+        console.log(res)
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
           setIsApplied(
@@ -76,31 +77,30 @@ const JobDescription = () => {
     fetchSingleJob();
   }, [jobId, dispatch, user?._id]);
 
-  console.log(singleJob);
   const jobDetails = [
     {
       label: "Location",
-      value: singleJob.location,
+      value: singleJob?.location,
       icon: <MapPin className="w-4 h-4" />,
     },
     {
       label: "Posted On",
-      value: new Date(singleJob.createdAt).toLocaleDateString(),
+      value: new Date(singleJob?.createdAt).toLocaleDateString(),
       icon: <Calendar className="w-4 h-4" />,
     },
     {
       label: "Job Type",
-      value: singleJob.jobType,
+      value: singleJob?.jobType,
       icon: <Clock className="w-4 h-4" />,
     },
     {
       label: "Salary",
-      value: `${singleJob.salary} LPA`,
+      value: `${singleJob?.salary} LPA`,
       icon: <DollarSign className="w-4 h-4" />,
     },
     {
       label: "Openings",
-      value: singleJob.position,
+      value: singleJob?.position,
       icon: <Users className="w-4 h-4" />,
     },
   ];
@@ -108,8 +108,7 @@ const JobDescription = () => {
   return (
     <>
       <Navbar />
-
-      <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50">
+       <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-gray-50">
         <CardHeader className="pb-6">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <div className="flex-1">
@@ -217,7 +216,7 @@ const JobDescription = () => {
             </div>
           </div>
 
-          {singleJob.applications && singleJob.applications.length > 0 && (
+          {singleJob?.applications && singleJob.applications.length >= 0 && (
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-100">
               <div className="flex items-center gap-2 mb-2">
                 <Users className="w-5 h-5 text-blue-600" />

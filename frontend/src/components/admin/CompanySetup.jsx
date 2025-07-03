@@ -19,7 +19,7 @@ const CompanySetup = () => {
         description: "",
         website: "",
         location: "",
-        file: null
+        file: ""
     });
     const {singleCompany} = useSelector(store=>store.company);
     const [loading, setLoading] = useState(false);
@@ -36,6 +36,10 @@ const CompanySetup = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!input.description || !input.file || !input.location || !input.name || !input.website){
+            toast.error("Something is missing")
+            return
+        }
         const formData = new FormData();
         formData.append("name", input.name);
         formData.append("description", input.description);

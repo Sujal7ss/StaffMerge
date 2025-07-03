@@ -35,6 +35,10 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if(!input.bio || !input.email || !input.file || !input.fullname || !input.phoneNumber || !input.skills){
+            toast.error("Something is missing");
+            return;
+        }
         const formData = new FormData();
         formData.append("fullname", input.fullname);
         formData.append("email", input.email);

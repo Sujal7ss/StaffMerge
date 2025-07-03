@@ -14,7 +14,7 @@ const CompaniesTable = () => {
         const filteredCompany = companies.length >= 0 && companies.filter((company)=>{
             if(!searchCompanyByText){
                 return true
-            };
+            }
             return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
 
         });
@@ -34,8 +34,8 @@ const CompaniesTable = () => {
                 </TableHeader>
                 <TableBody>
                     {
-                        filterCompany?.map((company) => (
-                            <tr>
+                        filterCompany?.map((company, index) => (
+                            <tr key={index}>
                                 <TableCell>
                                     <Avatar>
                                         <AvatarImage src={company.logo}/>
