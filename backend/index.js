@@ -25,6 +25,25 @@ app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
+// Health check route
+app.get("/", async (req, res) => {
+    try {
+        // Check DB connection status
+        const dbStatus = (await connectDB.checkConnection()) ? "connected" : "disconnected";
+
+        res.status(200).json({
+            success: true,
+            message: "Server is running",
+            database: dbStatus
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Health check failed",
+            error: error.message
+        });
+    }
+});
 
 // api's
 app.use("/api/v1/user", userRoute);
