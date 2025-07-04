@@ -14,12 +14,16 @@ const app = express();
 
 // middleware
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'http://localhost:5173',
-    credentials:true
-}
+  origin: [
+    "https://staff-merge-lrjg9fzz8-sujals-projects-6f34d0a1.vercel.app", // your frontend on Vercel
+    "https://staff-merge.vercel.app/",
+    "http://localhost:5173", // for local dev
+  ],
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
 
@@ -27,22 +31,24 @@ const PORT = process.env.PORT || 3000;
 
 // Health check route
 app.get("/", async (req, res) => {
-    try {
-        // Check DB connection status
-        const dbStatus = (await connectDB.checkConnection()) ? "connected" : "disconnected";
+  try {
+    // Check DB connection status
+    const dbStatus = (await connectDB.checkConnection())
+      ? "connected"
+      : "disconnected";
 
-        res.status(200).json({
-            success: true,
-            message: "Server is running",
-            database: dbStatus
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Health check failed",
-            error: error.message
-        });
-    }
+    res.status(200).json({
+      success: true,
+      message: "Server is running",
+      database: dbStatus,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Health check failed",
+      error: error.message,
+    });
+  }
 });
 
 // api's
@@ -51,9 +57,7 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-
-
-app.listen(PORT,()=>{
-    connectDB();
-    console.log(`Server running at port ${PORT}`);
-})
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`Server running at port ${PORT}`);
+});
