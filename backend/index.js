@@ -16,16 +16,22 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+const allowedOrigins = [
+  "https://staff-merge-lrjg9fzz8-sujals-projects-6f34d0a1.vercel.app",
+  "https://staff-merge.vercel.app",
+  "http://localhost:5173"
+];
 const corsOptions = {
-  origin: [
-    "https://staff-merge-lrjg9fzz8-sujals-projects-6f34d0a1.vercel.app", // your frontend on Vercel
-    "https://staff-merge.vercel.app/",
-    "http://localhost:5173", // for local dev
-  ],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
 };
-
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 
 const PORT = process.env.PORT || 3000;
 
